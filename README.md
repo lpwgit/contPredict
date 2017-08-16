@@ -11,9 +11,8 @@ devtools::install_github("lpwgit/sampleCont")
 
 ## Example usage
 library(sampleCont)  
-data_path <- past0(getwd(),'/inst/extdata')  
-output_path <- past0(getwd() ,'/output')  
+data_path <- paste0(getwd(),'/inst/extdata')  
+output_path <- paste0(getwd() ,'/output')  
 config_file <- system.file("extdata", 'config.txt',
   package = "sampleCont", mustWork = TRUE)  
-run_sampleContamination(data_path = data_path,output_path = output_path, 
-  config_file=config_file,rmcov_cutoff=0,manualsetPar=FALSE)
+run_sampleContamination(data_path = data_path,output_path = output_path,config_file=config_file,rmcov_cutoff=0,manualsetPar=FALSE)
