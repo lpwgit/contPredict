@@ -14,6 +14,7 @@ library(sampleCont)
 data_path <- past0(getwd(),'/inst/extdata')
 output_path <- past0(getwd() ,'/output')
 config_file <- system.file("extdata", 'config.txt',
-    package = "sampleCont", mustWork = TRUE)
+  package = "sampleCont", mustWork = TRUE)
+
 run_sampleContamination(data_path = data_path,output_path = output_path, 
   config_file=config_file,rmcov_cutoff=0,manualsetPar=FALSE)
