@@ -202,17 +202,6 @@ if(continue.analysis){
                      seg.lab.size = 0.7,fig.file="circos.pdf",
                      contaminatedOnly=TRUE,sameSubjectOnly=TRUE,allSamples=sampleID,
                      output_path )
-
-#  plot_circos_link ( circos.plot,R=300,W=30,plotsize=800,titleStr="Contamination",
-#                    seg.lab.size = 1.3,fig.file="contamination_circos.pdf",
-#                     contaminatedOnly=TRUE,sameSubjectOnly=TRUE,allSamples=sampleID,
-#                     output_path )
-
-  #plot_circos_link ( circos.plot,R=300,W=30,plotsize=800,titleStr="Same subjects",
-#                     seg.lab.size = 1.3,fig.file="sameSubjects_circos.pdf",
-#                    contaminatedOnly=FALSE,sameSubjectOnly=TRUE,allSamples=sampleID,
-#                     output_path )
-
 } ## contamination exists
 
 process.msg <-"Done!\nOutput written to:"

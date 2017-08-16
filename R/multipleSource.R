@@ -70,14 +70,9 @@ multipleSource <- function(sample_pairs,VAFdata,VAFcov,VAF_cutoff=0.002,VAF_cuto
   if(file.exists(logfile)){
     file.remove(logfile)
   }
- # realSourceEliminatefile <- paste0(output_path,"/tmp/realSource_eliminatedPairs.list")
-  #if(file.exists(realSourceEliminatefile)){
-   # file.remove(realSourceEliminatefile)
-    #cat(paste("remove","target","keep", sep=" "),file=realSourceEliminatefile,sep="\n")
-  #}
+
   colnames(relation_for_multipleSource) <- c("pid1","pid2","rel","flip")
   if(dim(relation_for_multipleSource)[1]>0){
-    ## multiple source(tumor-Td,metastatis-Tm,normal-Nb) to a target, remove source that is insignificant
     source_target <-apply(relation_for_multipleSource,1,function (i){
       if(i['rel'] =="01" ){
         source<-i['pid2']
@@ -160,19 +155,9 @@ multipleSource <- function(sample_pairs,VAFdata,VAFcov,VAF_cutoff=0.002,VAF_cuto
           d <- matrix(c(s1_tgt,  s1_not_in_tgt, s2_tgt,s2_not_in_tgt), 2, 2) #multisource
           p.val <- fisher.test(d,alternative='greater')$'p.value'
 
-          ## log file
-          #logprt <- cbind(target, s1, s2,p.val)
-          #write.table(logprt,file=logfile,append=TRUE,sep="\t",col.names = F,row.names = F,quote=F)
-
-          ##########
           d2 <- matrix(c(s2_tgt,  s2_not_in_tgt, s1_tgt,s1_not_in_tgt), 2, 2) #multisource
-          #rownames(d2)<- c('present','absent')
-          #colnames(d2)<-c(s2,s1)
           p.val2 <- fisher.test(d2,alternative='greater')$'p.value'
 
-          ## log file
-          #logprt <- cbind(target, s2, s1,p.val2)
-          #write.table(logprt,file=logfile,append=TRUE,sep="\t",col.names = F,row.names = F,quote=F)
 
           if(p.val >= p.val_cutoff & p.val2 <p.val_cutoff){
             remove.flag <- c(FALSE,TRUE)
@@ -183,12 +168,7 @@ multipleSource <- function(sample_pairs,VAFdata,VAFcov,VAF_cutoff=0.002,VAF_cuto
           }
 
           final.del <- remove.flag
-
-          ## plot histogram of different samples contaminate target sample (log)
-          ## turn off realSource(data,s1,s2,target,output_path,s1_tgt,s2_tgt,s1_not_in_tgt,s2_not_in_tgt,both_in_tgt,both_not_in_tgt,p.val,p.val2)
           final.del
-
-          ##########
         })
         source_del <- unique(source_pair[!sourcepair_chk_fishtest])
 

@@ -24,7 +24,6 @@ filterCommonSNPs<- function(VAFdata, percentage=5,output_path){
   df$cov <- df$sd/df$mean
   rownames(df) <- VAFdata$mutationID
   outfile <- paste0(output_path,"/tmp/SNPcv.txt")
-  #print(outfile)
   write.table(df,outfile,quote=F,sep='\t')
   cov.quantile <- quantile(df$cov,na.rm = T,seq(0,1,0.01))
   perc <- paste0(percentage,"%")

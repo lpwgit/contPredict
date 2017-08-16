@@ -29,7 +29,5 @@ pairCountPoint <- function(VAFdata,pid1,pid2,slope1,slope2) {
   r7 <- sum(VAFdata[,pid2]<=slope2*VAFdata[,pid1] & VAFdata[,pid2]>=slope1*VAFdata[,pid1] & !(VAFdata[,pid2]<=VAF_ignore & VAFdata[,pid1]<=VAF_ignore)) ## center
   tab <- t(c(r1,r2,r3,r4,r5,r6,r7))
   colnames(tab)=c("x0y0","xylt0d2","xonly","yonly","x2y","y2x","center")
-#print(c(pid1,pid2))
-#  print(tab)
 invisible(tab)
 }

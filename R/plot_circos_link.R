@@ -162,11 +162,8 @@ plot_circos_link <- function (circos.indata,R=300,W=30,plotsize=800,titleStr="",
   }
 
   if(any(c( sameSubject.flag, x2y.flag, y2x.flag,bothway.flag))){
-    #fig.file <-paste0(output_path,"/",fig.file)
-    #png(paste0(output_path,"/",fig.file), width = 8, height = 8, units = "in", res=200, bg ="white",pointsize=6)
     hsize <-6
     wsize <- 6
-    #bitmap(paste0(output_path,"/",fig.file), height = hsize, width = wsize, units = 'in', res=300)
     pdf(paste0(output_path,"/",fig.file), height = hsize, width = wsize)
     par(mar=c(0, 0, 2, 0))
     plot(c(1,plotsize), c(1,plotsize), type="n", axes=FALSE, xlab="", ylab="", main=titleStr)
@@ -199,7 +196,6 @@ plot_circos_link <- function (circos.indata,R=300,W=30,plotsize=800,titleStr="",
     }
     if(bothway.flag & !sameSubjectOnly){
       circos_link(R=R1, cir=plot.db, W=W, mapping=bothway.link.data, type="link", col=bothway.link.data$linkColorBySource,link.wd = bothway.link.data$weight,line_type=bothway_line_type)
-      #circos_link(R=R1, cir=plot.db, W=W, mapping=bothway.link.data, type="link", col=bothway.link.data$linkColorBySource,link.wd = bothway.link.data$weight)
     }
     invisible(dev.off())
   }

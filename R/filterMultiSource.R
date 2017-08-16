@@ -17,27 +17,6 @@
 #' @export
 #'
 filterMultiSources <- function (predict.cont,output_path,VAFdata,VAFcov,uniq_both=2){
-  #if(missing(filename)){
-  #  stop("Empty filename!")
-  #}
-  #if(!file.exists(filename)){
-  #  stop("Could not find file!")
-  #}
-
-  ################################################################
-  ###log
-  #outfile1 <- paste0(output_path,"/tmp/s1_vaf_cov.txt")
-  #outfile2 <- paste0(output_path,"/tmp/s2_vaf_cov.txt")
-  #outfile <- paste0(output_path,"/tmp/targetOnly_vaf_cov.txt")
-
-  #out <- cbind("target","s1","s2",'mutationID',"s1_vaf","target_vaf","vaf_diff","vaf_ratio","mutationID2","s1_cov","s1_cov","target_cov")
-  #write.table(out,quote = F,col.names=F, row.names = F,sep="\t",outfile1 )
-  #out <- cbind("target","s1","s2",'mutationID',"s1_vaf","target_vaf","vaf_diff","vaf_ratio","mutationID2","s1_cov","s1_cov","target_cov")
-  #write.table(out,quote = F,col.names=F, row.names = F,sep="\t",outfile2 )
-  #out <- cbind("target","s1","s2",'mutationID',"s1_vaf","s2_vaf","target_vaf","mutationID2","s1_cov","s1_cov","target_cov")
-  #write.table(out,quote = F,col.names=F, row.names = F,sep="\t",outfile )
-  ################################################################
-
   method1 <-F # T:lei, F:MY
   minCov <- 0
   #predict.cont <- as.matrix(read.table(filename,header=T,check.names = F))
@@ -202,16 +181,6 @@ filterMultiSources <- function (predict.cont,output_path,VAFdata,VAFcov,uniq_bot
       min.cov.s1.target.only <- pmin(s1.s2.target.only.cov[,2],s1.s2.target.only.cov[,4]) ## snps in target not in s1/s2
       min.cov.s2.target.only <- pmin(s1.s2.target.only.cov[,3],s1.s2.target.only.cov[,4])
 
-      ## log
-      #out <- cbind(dupl.target[i],s1,s2,s1.target[order(s1.target[,'mutationID']),],s1.s2.target.cov[order(s1.s2.target.cov[,'mutationID']),])
-      #write.table(out,quote = F,col.names=F, row.names = F,sep="\t",outfile1 ,append=T )
-      #out <- cbind(dupl.target[i],s1,s2,s2.target[order(s2.target[,'mutationID']),],s2.s1.target.cov[order(s2.s1.target.cov[,'mutationID']),])
-      #write.table(out,quote = F,col.names=F, row.names =F, sep="\t",outfile2 ,append=T  )
-
-      #out <- c(dupl.target[i],s1,s2, s1.s2.target.only.vaf, s1.s2.target.only.cov)
-      #write.table(out,quote = F, col.names=F,row.names = F,sep="\t",outfile ,append=T )
-
-        #print("MY method")
         n.rep <- dim(s1.target)[1]
         s1.target$dist <-  sqrt( (s1.target$source/s1.target$target - rep(cont1/100,n.rep))^2 * log10(s1.target.min.cov))
         n.rep <- dim(s2.target)[1]
@@ -399,12 +368,7 @@ filterMultiSources <- function (predict.cont,output_path,VAFdata,VAFcov,uniq_bot
       process.predict.cont <- process.predict.cont[-rm.row,]
 
     }
-  #if(first){
-    #outfile <- paste0(output_path,"/tmp/log_dist.txt")
-    #write.table(multi.source,quote=F,outfile,append=T,row.names=F)
-   # first = FALSE
-  #}else{
-    #write.table(multi.source,quote=F,outfile,append=T,row.names=F)  }
+
   }# each dupl target
 
   outfile<- paste0(output_path,"/contPredict.txt")
