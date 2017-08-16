@@ -1,5 +1,0 @@
-source	target	predicted_contamination_perc
-CAP003-Td1b	CAP001-Nb-K	9.387
-CAP002-Td1b-K	CAP001-Td1c-K	4.64
-CAP002-Nb	CAP003-Nb-K	21.285
-CAP001-Td1c-K	CAP002-Td1b-K	10.001

@@ -4,7 +4,7 @@
 Identify sample contamination base on variant allele frequency (VAF) detected from genome sequencing on tumor samples. An example of VAF data and its configuration file are distributed with this package under inst/extdata/.
 
 ## Manual
-[Refer manual here](/inst/extdata/sampleCont_manual.pdf)
+[Refer manual here](/inst/extdata/sampleCont_vignettes.pdf)
 
 ## Installation
 devtools::install_github("lpwgit/sampleCont")
