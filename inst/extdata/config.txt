@@ -1,0 +1,11 @@
+VAF_cutoff1	0.05	misc VAF threshold
+VAF_cutoff	0.002	minimum VAF to be considered present in a sample
+VAF_ignore	0.2	ignore ambiguous variant fall below this cutoff
+pcomm_cutoff	0.1	localPcomm_cutoff
+p.val_cutoff	0.05	fish exact test p-val cutoff for multi source cases
+num_round_digit	3	number of decimal to be rounded off
+center_cutoff	0.5	samePatient_cutoff
+source_cutoff	0.4	source_cutoff
+target_cutoff	0.1	target_cutoff
+region_cutoff	0.75	for globalPcomm <pcomm_cutoff, sourceLarge_cutoff
+n_sample	7	number of sample
