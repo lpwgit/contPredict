@@ -2,14 +2,21 @@
 % Please edit documentation in R/filterByCov.R
 \name{filterByCov}
 \alias{filterByCov}
+<<<<<<< HEAD
 \title{Filter mutations by coverage}
 \usage{
 filterByCov(VAFdata,VAFcov,minCov)
+=======
+\title{Filter mutation by coverage}
+\usage{
+filterByCov(VAFdata,VAFcov)
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \arguments{
 \item{VAFdata}{data frame, VAF}
 
 \item{VAFcov}{data frame, VAF cov}
+<<<<<<< HEAD
 
 \item{minCov}{numeric, minimum coverage (default:50)}
 }
@@ -18,6 +25,14 @@ data frame
 }
 \description{
 This function filters mutation by coverage
+=======
+}
+\value{
+write to output directory
+}
+\description{
+This function filter mutation by coverage
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \references{
 {TBA}

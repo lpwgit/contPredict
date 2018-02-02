@@ -4,7 +4,11 @@
 \alias{filterMultiSources}
 \title{Filter multisource contamination}
 \usage{
+<<<<<<< HEAD
 filterMultiSources(filename,output_path,VAFdata,VAFcov,uniq_both)
+=======
+filterMultiSources(filename,output_path,VAFdata,uniq_both)
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \arguments{
 \item{filename}{character, contamination file name}

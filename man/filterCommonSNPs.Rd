@@ -2,16 +2,25 @@
 % Please edit documentation in R/filterCommonSNPs.R
 \name{filterCommonSNPs}
 \alias{filterCommonSNPs}
+<<<<<<< HEAD
 \title{Filter mutations base on coefficient of variant}
 \usage{
 filterCommonSNPs(VAFdata, percentage, output_path)
+=======
+\title{Filter SNPs base on coefficient of variant}
+\usage{
+filterCommonSNPs(VAFdata, percentage)
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \arguments{
 \item{VAFdata}{data frame, variant allele frequency (VAF)}
 
 \item{percentage}{numeric, COV cutoff in percentage (default:5)}
+<<<<<<< HEAD
 
 \item{output_path}{character, tmp directory to store log file (SNPcv.txt)}
+=======
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \value{
 integer vector, row index of VAF data to be used

@@ -4,7 +4,11 @@
 \alias{circos_link}
 \title{A modified circos plot from OmicCircos package}
 \usage{
+<<<<<<< HEAD
 circos_link (mapping, xc, yc, R, W,cir, type, print.chr.lab, cex,lwd, col, side,scale,seg.lab.size, link.wd,lower_arch,line_type)
+=======
+circos_link <- function (mapping=mapping, xc=400, yc=400, R=400, W=W,cir="", type="n", print.chr.lab=TRUE, cex=1,lwd=1, col=rainbow(10, alpha=0.8)[7], side="",seg.lab.size=1, link.wd=1,lower_arch=1,line_type="l")
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \arguments{
 \item{mapping, }{data frame}
@@ -31,8 +35,11 @@ circos_link (mapping, xc, yc, R, W,cir, type, print.chr.lab, cex,lwd, col, side,
 
 \item{side}{character, segment label position [in|out]}
 
+<<<<<<< HEAD
 \item{scale}{logic, scale the circos size (default: FALSE)}
 
+=======
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 \item{seg.lab.size}{numeric, segment label font size (default:1)}
 
 \item{link.wd}{numeric, link width (default:1)}

@@ -4,16 +4,24 @@
 \alias{mixingRatio}
 \title{Calculate contamination level}
 \usage{
+<<<<<<< HEAD
 mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,ALL_flag,output_path,sameSubject)
+=======
+mixingRatio(VAFdata,VAFcov,relation_for_mixingRatio,VAF_cutoff,VAF_ignore)
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \arguments{
 \item{VAFdata}{data frame, variant allele frequency (VAF)}
 
 \item{VAFcov}{data frame, variant coverage}
 
+<<<<<<< HEAD
 \item{sample_pairs}{data frame, sample pairs information}
 
 \item{final_rel}{data frame, relation information}
+=======
+\item{sample_pairs, }{sample pairs information}
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 
 \item{VAF_cutoff}{numeric, minimum VAF (default: 0.002)}
 
@@ -21,8 +29,11 @@ mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,ALL_flag
 
 \item{ALL_flag}{logical, TRUE: calculate all pairwise mixing ratio regardless of relationship, FALSE: calculate pairwise sample with relationship of 10|01|11}
 
+<<<<<<< HEAD
 \item{output_path}{character, output directory}
 
+=======
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 \item{sameSubject}{logical, TRUE: calculate contamination level for same subject pairs (default: FALSE)}
 }
 \value{

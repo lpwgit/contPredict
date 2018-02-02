@@ -2,9 +2,15 @@
 % Please edit documentation in R/plot_circos_link.R
 \name{plot_circos_link}
 \alias{plot_circos_link}
+<<<<<<< HEAD
 \title{Plot circos with links to show contamination samples}
 \usage{
 plot_circos_link (file,R,W,plotsize,titleStr,seg.lab.size,fig.file, contaminatedOnly,sameSubjectOnly,allSamples,output_path)
+=======
+\title{Plot circos with links to show contaminated pairwise sample}
+\usage{
+plot_circos_link (file,R=300,W=30,plotsize=800,titleStr="",seg.lab.size=1,fig.file="circos.png", contaminatedOnly=TRUE,sameSubjectOnly=FALSE,allSamples=sampleID)
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \arguments{
 \item{file}{character, circos data file name with its path}
@@ -21,13 +27,21 @@ plot_circos_link (file,R,W,plotsize,titleStr,seg.lab.size,fig.file, contaminated
 
 \item{fig.file}{character, circos figure file name}
 
+<<<<<<< HEAD
 \item{contaminatedOnly}{logical, only plot contaminated pairs? (default: TRUE)}
 
+=======
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 \item{sameSubjectOnly}{logical, only plot same subject pairs? (default: FALSE)}
 
 \item{allSamples}{character vector, sample ids}
 
 \item{output_path}{character, directory}
+<<<<<<< HEAD
+=======
+
+\item{contaminationOnly}{logical, only plot contaminated pairs? (default: TRUE)}
+>>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \value{
 .tif figure at output directory
