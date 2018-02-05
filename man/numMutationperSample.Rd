@@ -7,7 +7,7 @@
 numMutationperSample (VAFdata,VAF_cutoff,n)
 }
 \arguments{
-\item{VAFdata}{data frame, variant allele frequency (VAF)}
+\item{VAFdata}{data frame, mutation VAF}
 
 \item{VAF_cutoff}{numeric, minimum VAF}
 

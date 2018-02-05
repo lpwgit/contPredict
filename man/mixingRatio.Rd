@@ -4,14 +4,15 @@
 \alias{mixingRatio}
 \title{Calculate contamination level}
 \usage{
-mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,ALL_flag,output_path,sameSubject)
+mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,
+ALL_flag,output_path,sameSubject)
 }
 \arguments{
-\item{VAFdata}{data frame, variant allele frequency (VAF)}
+\item{VAFdata}{data frame, mutation VAF}
 
-\item{VAFcov}{data frame, variant coverage}
+\item{VAFcov}{data frame, mutation coverage}
 
-\item{sample_pairs}{data frame, sample pairs information}
+\item{sample_pairs}{data frame, pairwise samples information}
 
 \item{final_rel}{data frame, relation information}
 
@@ -19,14 +20,14 @@ mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,ALL_flag
 
 \item{VAF_ignore}{numeric, ignore variant less than this cutoff (default: 0.2)}
 
-\item{ALL_flag}{logical, TRUE: calculate all pairwise mixing ratio regardless of relationship, FALSE: calculate pairwise sample with relationship of 10|01|11}
+\item{ALL_flag}{logical, TRUE: calculate mixing ratio for all pairwise samples, FALSE: calculate mixing ratio for contamination pairwise samples}
 
 \item{output_path}{character, output directory}
 
 \item{sameSubject}{logical, TRUE: calculate contamination level for same subject pairs (default: FALSE)}
 }
 \value{
-matrix, source sample, target sample, relation, contamination level, flip_flag
+matrix containing source sample, target sample, relation, contamination level, flip_flag
 }
 \description{
 This function calculates contamination level, ratio of VAF_target to VAF_source

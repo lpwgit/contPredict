@@ -4,44 +4,44 @@
 \alias{pairPCommon}
 \title{Pairwise Sample Function}
 \usage{
-pairPCommon(VAFdata,VAF_cutoff,num_round_digit,n_sample)
-pairShare(VAFdata,VAF_cutoff,n_sample)
-pairList(VAFdata,n_sample,del)
-pairCommList(SNPcomm,n_sample)
+pairPCommon(VAFdata,VAF_cutoff,num_round_digit,n)
+pairShare(VAFdata,VAF_cutoff,n)
+pairList(VAFdata,n,del)
+pairCommList(SNPcomm,n)
 }
 \arguments{
-\item{VAFdata}{data frame, variant allele frequency (VAF)}
+\item{VAFdata}{data frame, mutation VAF}
 
 \item{VAF_cutoff}{numeric, minimum VAF}
 
-\item{num_round_digit}{numeric, number of rounding decimal digit (default:3)}
+\item{num_round_digit}{numeric, number of rounding decimal digit (default: 3)}
 
-\item{n_sample}{numeric, number of sample}
+\item{n}{numeric, number of sample}
 
-\item{SNPcomm}{matrix, output from the calling of pairPCommon(VAFdata,VAF_cutoff,num_round_digit,n_sample)}
+\item{SNPcomm}{matrix, output from the calling of pairPCommon(VAFdata,VAF_cutoff,num_round_digit,n)}
 
 \item{del}{character, file delimiter}
 }
 \value{
-pairPCommon: matrix, nxn pcommon of pairwise sample, n: number of sample
+pairPCommon: matrix, nxn pcommon, n: number of sample
 
-pairShare: matrix, nxn number of common snps of pairwise sample
+pairShare: matrix, nxn number of common snps
 
-pairList: vector, all possible pairwise samples
+pairList: vector, all pairwise samples
 
-pairCommList: list, all possible pairwise samples and the respective pcommon values
+pairCommList: list, all pairwise samples and their pcommon values
 }
 \description{
 4 different functions for pairwise sample
 }
 \details{
-pairPCommon calculates pcommon of pairwise sample
+pairPCommon: calculates pcommon
 
-pairShare counts number of common SNPs for pairwise sample
+pairShare: counts number of common SNPs
 
-pairList generates all pairwise sample list
+pairList: generates all pairwise sample list
 
-pairCommList tabulates pairwise pcommon for each paired sample in a row
+pairCommList: tabulates pcommon for all pairwise samples
 }
 \references{
 {TBA}

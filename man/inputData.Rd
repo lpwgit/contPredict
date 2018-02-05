@@ -2,7 +2,7 @@
 % Please edit documentation in R/inputData.R
 \name{inputData}
 \alias{inputData}
-\title{Read in data from a given file}
+\title{Read in data from a file}
 \usage{
 inputData(filename)
 }

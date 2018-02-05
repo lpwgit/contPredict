@@ -2,12 +2,12 @@
 #'
 #' This function uses Fisher exact test to filter multiple sources that contaminate a particular target sample
 #'
-#' @param sample_pairs data frame, variant allele frequency (VAF)
-#' @param VAFdata data frame, VAF
-#' @param VAFcov data frame, variant coverage
-#' @param VAF_cutoff numeric, minimum VAF (default:0.002)
-#' @param VAF_cutoff1 numeric, minimum VAF to be considered a source mutation (default:0.05)
-#' @param p.val_cutoff numeric, pval cutoff to be considered significant contamination source (default:0.05)
+#' @param sample_pairs data frame, sample infomation
+#' @param VAFdata data frame, mutation VAF
+#' @param VAFcov data frame, mutation coverage
+#' @param VAF_cutoff numeric, minimum VAF (default: 0.002)
+#' @param VAF_cutoff1 numeric, minimum VAF to be considered a source mutation (default: 0.05)
+#' @param p.val_cutoff numeric, pval cutoff to be considered a significant contamination source (default: 0.05)
 #' @param output_path character, output directory
 #'
 #' @usage multipleSource(sample_pairs,VAFdata,VAFcov,VAF_cutoff,VAF_cutoff1,p.val_cutoff,output_path)
@@ -113,7 +113,7 @@ multipleSource <- function(sample_pairs,VAFdata,VAFcov,VAF_cutoff=0.002,VAF_cuto
       sourcepair_chk_fishtest <- apply(source_pair, 2, function(k) {
           s1 <- k[1]
           s2 <- k[2]
-            ## mit method
+
             tmp.data <- as.data.frame(cbind(VAFdata[,target],VAFdata[,s1],VAFdata[,s2],as.matrix(unlist(VAFdata[,'publicDB']))))
             colnames(tmp.data) <-c(target,s1,s2,"publicDB")
             rownames(tmp.data) <- VAFdata[,'mutationID']

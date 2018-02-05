@@ -4,30 +4,32 @@
 \alias{pairRelation}
 \title{Determine relationship between pairwise sample}
 \usage{
-pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,localPcomm_cutoff,region_cutoff,num_round_digit,output_path)
+pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,
+localPcomm_cutoff,region_cutoff,num_round_digit,output_path)
 }
 \arguments{
-\item{sample_pairs}{data frame, sample information}
+\item{sample_pairs}{data frame, pairwise samples information}
 
-\item{center_cutoff}{numeric, cutoff to be classified as same subject samples (default:0.5)}
+\item{center_cutoff}{numeric, cutoff to be classified as same subject samples (default: 0.5)}
 
-\item{source_cutoff}{numeric, cutoff to be classififed as source sample (default:0.4)}
+\item{source_cutoff}{numeric, cutoff to be classififed as source sample (default: 0.4)}
 
-\item{target_cutoff}{numeric, cutoff to be classified as target sample (default:0.1)}
+\item{target_cutoff}{numeric, cutoff to be classified as target sample (default: 0.1)}
 
-\item{localPcomm_cutoff}{numeric, cutoff to manage high or low SNPs sharing between a pair of sample}
+\item{localPcomm_cutoff}{numeric, cutoff to manage high or low SNPs sharing between a pair of samples}
 
-\item{region_cutoff}{numeric, cutoff for case with low SNP sharing (default:0.75)}
+\item{region_cutoff}{numeric, cutoff for case with low SNP sharing (default: 0.75)}
 
-\item{num_round_digit}{integer, rounding numeric up to this decimal point (default:3)}
+\item{num_round_digit}{integer, rounding numeric up to this decimal point (default: 3)}
 
 \item{output_path}{character, output directory}
 }
 \value{
-matrix, 2 columns: pcommon and relation
+matrix, 2 columns containing pcommon and relation
 }
 \description{
-This function identifies relationship of pairwise sample [00: same patient| 10: X contaminate Y|01 Y contaminate X| 11: both way contamination]
+This function identifies relationship of pairwise sample
+[00: same patient | 10: X contaminate Y | 01 Y contaminate X | 11: both way contamination]
 }
 \references{
 {TBA}

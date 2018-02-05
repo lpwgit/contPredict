@@ -2,18 +2,19 @@
 #'
 #' This function detects sample contamination base on variant allele frequency (VAF) and variant coverage
 #'
-#' @param data_path character, VAF and COV data directory
+#' @param data_path character, mutation VAF and coverage file directory
 #' @param output_path character, output directory
 #' @param config_file character, configuration file
-#' @param filterCOV numeric, below this cutoff
-#' @param rmSNPcv_cutoff numeric, TRUE: filter SNPs with low covariance of coefficient (COV), FALSE: (default:FALSE)
-#' @param manualsetPara logical, TRUE: parameter setting base on distribution of pairwise sample commonality, FALSE: default setting as in configuration file (default:FALSE)
-#' @param manual_localPcomm numeric, localPcomm for classification low/high contamination (default: 10)
-#' @param manual_center numeric, manual center cutoff for same subject determination (default: 50)
+#' @param filterCOV numeric, filter mutation below this cutoff
+#' @param rmSNPcv_cutoff numeric, TRUE: filter SNPs with low covariance of coefficient (COV) (default: FALSE)
+#' @param manualsetPara logical, TRUE: manual setting base on distribution of pairwise samples commonality (default: FALSE)
+#' @param manual_localPcomm numeric, manual setting of localPcomm for low or high contamination (default: 10)
+#' @param manual_center numeric, manual setting of center cutoff for same subject determination (default: 50)
 #'
-#' @usage run_sampleContamination(data_path, output_path, config_file="config.txt",rmSNPcv_cutoff=0,manualsetPara=FALSE,manual_localPcomm=10,manual_center =50,filterCOV =0)
+#' @usage run_sampleContamination(data_path, output_path, config_file="config.txt",
+#' rmSNPcv_cutoff=0,manualsetPara=FALSE,manual_localPcomm=10,manual_center=50,filterCOV=0)
 #'
-#' @return contamination tab delimited text file with 3 columns: source sample, target sample, contamination percentage.Contamination and same subject circos plot figure in pdf
+#' @return list, containing pcomm, center cutoff, target cutoff, source cutoff, region cutoff and number of sample
 #'
 #' @references
 #' {TBA}
@@ -29,7 +30,7 @@ if(!file.exists(config_file) ){
 
 options(stringsAsFactors = FALSE)
 options(warn=-1)
-suppressPackageStartupMessages(library("sampleCont"))
+suppressPackageStartupMessages(library("sampleContamination"))
 
 # set parameters
 setParameterConfig(config_file)
@@ -76,7 +77,7 @@ SNPcount <- numMutationperSample(VAFdata,VAF_cutoff,n_sample)
 process.msg <- "Processing SNPs..."
 cat(process.msg,"\n")
 
-## paiwise sample common SNPs
+## count common SNPs
 SNPshare<- pairShare(VAFdata,VAF_cutoff,n_sample)
 
 ## create all possible pairwise sample
@@ -95,7 +96,7 @@ sample_pairs <- data.frame(pairID = pairs, pids)
 countPoint <- regionCountMutation(sample_pairs,VAFdata,SNPcount,SNPshare,VAF_cutoff,VAF_ignore,n_sample)
 sample_pairs <- cbind(sample_pairs, countPoint)
 
-## manual set some parameters (localPcomm_cutoff,center_cutoff, target_cutoff, source_cutoff, region_cutoff) ignore those in configuration file
+## manual set parameters (localPcomm_cutoff,center_cutoff, target_cutoff, source_cutoff, region_cutoff) ignore those in configuration file
 if(manualsetPara){
   ## manual localPcomm
   view.pcomm <- pcomm
@@ -118,7 +119,7 @@ if(manualsetPara){
   rtn.out <-as.data.frame(cbind(pcomm=localPcomm_cutoff,center=center_cutoff,target=target_cutoff,source=source_cutoff,region=region_cutoff,n_sample =n_sample))
 }
 
-## identify relation btw pairwise sample
+## identify relation
 rel <- pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,localPcomm_cutoff,region_cutoff,num_round_digit,output_path)
 
 sample_pairs <- cbind(sample_pairs, rel)
@@ -137,8 +138,6 @@ if(length(which(rel[,'rel'] !="00" & rel[,'rel'] !="-1")) ==0){
   	same.subject.mr <- as.data.frame(mixingRatio(VAFdata,VAFcov,sample_pairs=sample_pairs,VAF_cutoff = VAF_cutoff,VAF_ignore = VAF_ignore,ALL_flag = TRUE,sameSubject=TRUE))
   	same.subject.out <- as.data.frame(cbind(source=same.subject.mr$source,target=same.subject.mr$target,link=round(10* as.numeric(same.subject.mr$lm_coeff),num_round_digit),rel=same.subject.mr$rel))
   	outfile <- paste0(output_path,"/tmp/circos_plotdata.txt")
-  	write.table(same.subject.out,outfile,quote=F,sep='\t',row.names = F)
-  	plot_circos_link (outfile,R=300,W=30,plotsize=800,titleStr="same subject only",seg.lab.size = 1.3,fig.file="sameSubjectOnly_circos_test.pdf",contaminatedOnly=FALSE,sameSubjectOnly=TRUE,allSamples=sampleID, output_path )
   	continue.analysis <-FALSE
   }
 }
@@ -162,6 +161,13 @@ if(continue.analysis){
 	write.table(unique(printmr),quote=F,sep='\t',paste(output_path,"/tmp/",center_cutoff,"center_",source_cutoff,"source_",target_cutoff,"target_",localPcomm_cutoff,"pcomm_",region_cutoff,"region_",n_sample,"sample_contaminationLevel.txt",sep = ''),row.names = F) ## final output
 	result.file = paste(output_path,"/tmp/",center_cutoff,"center_",source_cutoff,"source_",target_cutoff,"target_",localPcomm_cutoff,"pcomm_",region_cutoff,"region_",n_sample,"sample_contaminationLevel.txt",sep = '')
 	final.pred <- as.data.frame(filterMultiSources(result.file,output_path,VAFdata,VAFcov,uniq_both = 2))
+
+	## write same individual pairs
+	usedCol <-c(2,3)
+  same.ind <- as.data.frame(sample_pairs[which(sample_pairs$rel=="00"),usedCol])
+  outF <-paste0(output_path,"/sameIndividual.txt")
+  colnames(same.ind) <-c("pid1","pid2")
+  write.table(same.ind,quote=F, sep='\t',col.names = T, row.names = F,outF)
 } ## contamination exists
 
 ## clean up
@@ -172,3 +178,6 @@ process.msg <-"Done!\nOutput written to:"
 cat(process.msg, output_path,"\n")
 rtn.out
 } ## end function
+
+## rmarkdown
+rmarkdown::render("/home/lbw/prj1/2018Jan31/sampleContamination/vignettes/sampleContamination.Rmd",output_format = "pdf_document", output_dir = "/home/lbw/prj1/2018Jan31/sampleContamination/inst/extdata")

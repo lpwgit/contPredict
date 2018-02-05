@@ -1,14 +1,14 @@
-#' Filter mutations by coverage
+#' Filter mutations base on coverage
 #'
-#' This function filters mutation by coverage
+#' This function filters mutation base on coverage
 #'
-#' @param VAFdata data frame, VAF
-#' @param VAFcov data frame, VAF cov
-#' @param minCov numeric, minimum coverage (default:50)
+#' @param VAFdata data frame, mutation VAF
+#' @param VAFcov data frame, mutation coverage
+#' @param minCov numeric, minimum coverage (default: 50)
 #'
 #' @usage filterByCov(VAFdata,VAFcov,minCov)
 #'
-#' @return data frame
+#' @return data frame, mutation VAF with coverage > minCov
 #'
 #' @references
 #' {TBA}

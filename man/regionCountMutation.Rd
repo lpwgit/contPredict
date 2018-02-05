@@ -2,14 +2,14 @@
 % Please edit documentation in R/regionCountMutation.R
 \name{regionCountMutation}
 \alias{regionCountMutation}
-\title{Count number of mutation in 7 regions of variant allele frequency (VAF) scatter plot for a pair of sample (s1,s2)}
+\title{Count number of mutation in 7 regions of VAF scatter plot for a pair of samples (s1,s2)}
 \usage{
 regionCountMutation(sample_pairs,VAFdata,SNPcount,SNPshare,VAF_cutoff,VAF_ignore,n)
 }
 \arguments{
-\item{sample_pairs}{data frame}
+\item{sample_pairs}{data frame, pairwise samples information}
 
-\item{VAFdata}{data frame, VAF}
+\item{VAFdata}{data frame, mutation VAF}
 
 \item{SNPcount}{integer matrix, number of SNPs for each sample}
 
@@ -22,10 +22,10 @@ regionCountMutation(sample_pairs,VAFdata,SNPcount,SNPshare,VAF_cutoff,VAF_ignore
 \item{n}{integer, number of sample}
 }
 \value{
-matrix, n SNPs x 10 columns: number of SNPs in 7 regions, number of SNPs in s1, number of SNPs in s2, common SNPs between s1 and s2
+matrix, (n mutation x 10) containing number of SNPs in 7 regions, number of SNPs in s1, number of SNPs in s2, common SNPs between s1 and s2
 }
 \description{
-This function counts number of SNPs in 7 regions of pairwise sample VAF scatter plot
+This function counts number of SNPs in 7 regions of pairwise samples VAF scatter plot
 }
 \references{
 {TBA}

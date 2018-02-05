@@ -4,27 +4,28 @@
 \alias{run_sampleContamination}
 \title{Main function to run sample contamination analysis}
 \usage{
-run_sampleContamination(data_path, output_path, config_file="config.txt",rmSNPcv_cutoff=0,manualsetPara=FALSE,manual_localPcomm=10,manual_center =50,filterCOV =0)
+run_sampleContamination(data_path, output_path, config_file="config.txt",
+rmSNPcv_cutoff=0,manualsetPara=FALSE,manual_localPcomm=10,manual_center=50,filterCOV=0)
 }
 \arguments{
-\item{data_path}{character, VAF and COV data directory}
+\item{data_path}{character, mutation VAF and coverage file directory}
 
 \item{output_path}{character, output directory}
 
 \item{config_file}{character, configuration file}
 
-\item{rmSNPcv_cutoff}{numeric, TRUE: filter SNPs with low covariance of coefficient (COV), FALSE: (default:FALSE)}
+\item{rmSNPcv_cutoff}{numeric, TRUE: filter SNPs with low covariance of coefficient (COV) (default: FALSE)}
 
-\item{manualsetPara}{logical, TRUE: parameter setting base on distribution of pairwise sample commonality, FALSE: default setting as in configuration file (default:FALSE)}
+\item{manualsetPara}{logical, TRUE: manual setting base on distribution of pairwise samples commonality (default: FALSE)}
 
-\item{manual_localPcomm}{numeric, localPcomm for classification low/high contamination (default: 10)}
+\item{manual_localPcomm}{numeric, manual setting of localPcomm for low or high contamination (default: 10)}
 
-\item{manual_center}{numeric, manual center cutoff for same subject determination (default: 50)}
+\item{manual_center}{numeric, manual setting of center cutoff for same subject determination (default: 50)}
 
-\item{filterCOV}{numeric, below this cutoff}
+\item{filterCOV}{numeric, filter mutation below this cutoff}
 }
 \value{
-contamination tab delimited text file with 3 columns: source sample, target sample, contamination percentage.Contamination and same subject circos plot figure in pdf
+list, containing pcomm, center cutoff, target cutoff, source cutoff, region cutoff and number of sample
 }
 \description{
 This function detects sample contamination base on variant allele frequency (VAF) and variant coverage

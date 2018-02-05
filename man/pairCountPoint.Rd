@@ -7,18 +7,18 @@
 pairCountPoint(VAFdata,pid1,pid2,slope1,slope2)
 }
 \arguments{
-\item{VAFdata}{data frame, Variant Allele Frequency}
+\item{VAFdata}{data frame, mutation VAF}
 
 \item{pid1}{character, first sample id}
 
 \item{pid2}{character, second sample id}
 
-\item{slope1}{numeric, first slope that is closer to axis-X (default:0.5)}
+\item{slope1}{numeric, first slope that is closer to axis-X (default: 0.5)}
 
-\item{slope2}{numeric, second slope that is closer to axis-Y (default:2)}
+\item{slope2}{numeric, second slope that is closer to axis-Y (default: 2)}
 }
 \value{
-matrix of 7 columns: number of SNPs in 7 regions
+matrix, containing number of SNPs in 7 regions
 }
 \description{
 This function counts number of SNPs in 7 regions of a given pair of sample

@@ -1,4 +1,4 @@
-#' Read in data from a given file
+#' Read in data from a file
 #'
 #' This function reads in file with header
 #'

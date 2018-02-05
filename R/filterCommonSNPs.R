@@ -1,9 +1,9 @@
 #' Filter mutations base on coefficient of variant
 #'
-#' This function filters common SNPs base on coefficient of variant (COV) at the specified cutoff
+#' This function filters common SNPs base on cutoff on coefficient of variant (COV)
 #'
-#' @param VAFdata data frame, variant allele frequency (VAF)
-#' @param percentage numeric, COV cutoff in percentage (default:5)
+#' @param VAFdata data frame, mutation VAF
+#' @param percentage numeric, COV cutoff in percentage (default: 5)
 #' @param output_path character, tmp directory to store log file (SNPcv.txt)
 #'
 #' @usage filterCommonSNPs(VAFdata, percentage, output_path)

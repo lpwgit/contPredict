@@ -2,7 +2,7 @@
 #'
 #' This function counts number of SNPs in each sample
 #'
-#' @param VAFdata data frame, variant allele frequency (VAF)
+#' @param VAFdata data frame, mutation VAF
 #' @param VAF_cutoff numeric, minimum VAF
 #' @param n numeric, number of sample
 #'

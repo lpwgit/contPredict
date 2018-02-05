@@ -7,9 +7,9 @@
 filterCommonSNPs(VAFdata, percentage, output_path)
 }
 \arguments{
-\item{VAFdata}{data frame, variant allele frequency (VAF)}
+\item{VAFdata}{data frame, mutation VAF}
 
-\item{percentage}{numeric, COV cutoff in percentage (default:5)}
+\item{percentage}{numeric, COV cutoff in percentage (default: 5)}
 
 \item{output_path}{character, tmp directory to store log file (SNPcv.txt)}
 }
@@ -17,7 +17,7 @@ filterCommonSNPs(VAFdata, percentage, output_path)
 integer vector, row index of VAF data to be used
 }
 \description{
-This function filters common SNPs base on coefficient of variant (COV) at the specified cutoff
+This function filters common SNPs base on cutoff on coefficient of variant (COV)
 }
 \references{
 {TBA}

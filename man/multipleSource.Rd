@@ -7,17 +7,17 @@
 multipleSource(sample_pairs,VAFdata,VAFcov,VAF_cutoff,VAF_cutoff1,p.val_cutoff,output_path)
 }
 \arguments{
-\item{sample_pairs}{data frame, variant allele frequency (VAF)}
+\item{sample_pairs}{data frame, sample infomation}
 
-\item{VAFdata}{data frame, VAF}
+\item{VAFdata}{data frame, mutation VAF}
 
-\item{VAFcov}{data frame, variant coverage}
+\item{VAFcov}{data frame, mutation coverage}
 
-\item{VAF_cutoff}{numeric, minimum VAF (default:0.002)}
+\item{VAF_cutoff}{numeric, minimum VAF (default: 0.002)}
 
-\item{VAF_cutoff1}{numeric, minimum VAF to be considered a source mutation (default:0.05)}
+\item{VAF_cutoff1}{numeric, minimum VAF to be considered a source mutation (default: 0.05)}
 
-\item{p.val_cutoff}{numeric, pval cutoff to be considered significant contamination source (default:0.05)}
+\item{p.val_cutoff}{numeric, pval cutoff to be considered a significant contamination source (default: 0.05)}
 
 \item{output_path}{character, output directory}
 }

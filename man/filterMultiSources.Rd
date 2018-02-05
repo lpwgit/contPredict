@@ -11,14 +11,14 @@ filterMultiSources(filename,output_path,VAFdata,VAFcov,uniq_both)
 
 \item{output_path}{character, output directory}
 
-\item{VAFdata}{data frame, VAF}
+\item{VAFdata}{data frame, mutation VAF}
 
-\item{VAFcov}{data frame, VAFcov}
+\item{VAFcov}{data frame, mutation coverage}
 
-\item{uniq_both}{integer, flag to control type of overlapping SNPs in source and target samples}
+\item{uniq_both}{integer, flag to control type of overlapping mutation in source and target samples}
 }
 \value{
-write to output directory
+write to contPredict.txt at output_path
 }
 \description{
 This function filter multisource contamination

@@ -2,19 +2,20 @@
 #'
 #' This function calculates contamination level, ratio of VAF_target to VAF_source
 #'
-#' @param VAFdata data frame, variant allele frequency (VAF)
-#' @param VAFcov data frame, variant coverage
-#' @param sample_pairs data frame, sample pairs information
+#' @param VAFdata data frame, mutation VAF
+#' @param VAFcov data frame, mutation coverage
+#' @param sample_pairs data frame, pairwise samples information
 #' @param final_rel data frame, relation information
 #' @param VAF_cutoff numeric, minimum VAF (default: 0.002)
 #' @param VAF_ignore numeric, ignore variant less than this cutoff (default: 0.2)
-#' @param ALL_flag logical, TRUE: calculate all pairwise mixing ratio regardless of relationship, FALSE: calculate pairwise sample with relationship of 10|01|11
+#' @param ALL_flag logical, TRUE: calculate mixing ratio for all pairwise samples, FALSE: calculate mixing ratio for contamination pairwise samples
 #' @param output_path character, output directory
 #' @param sameSubject logical, TRUE: calculate contamination level for same subject pairs (default: FALSE)
 #'
-#' @usage mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,ALL_flag,output_path,sameSubject)
+#' @usage mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,
+#' ALL_flag,output_path,sameSubject)
 #'
-#' @return matrix, source sample, target sample, relation, contamination level, flip_flag
+#' @return matrix containing source sample, target sample, relation, contamination level, flip_flag
 #'
 #' @references
 #' {TBA}

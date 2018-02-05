@@ -1,19 +1,21 @@
 #' Determine relationship between pairwise sample
 #'
-#' This function identifies relationship of pairwise sample [00: same patient| 10: X contaminate Y|01 Y contaminate X| 11: both way contamination]
+#' This function identifies relationship of pairwise sample
+#' [00: same patient | 10: X contaminate Y | 01 Y contaminate X | 11: both way contamination]
 #'
-#' @param sample_pairs data frame, sample information
-#' @param center_cutoff numeric, cutoff to be classified as same subject samples (default:0.5)
-#' @param source_cutoff numeric, cutoff to be classififed as source sample (default:0.4)
-#' @param target_cutoff numeric, cutoff to be classified as target sample (default:0.1)
-#' @param localPcomm_cutoff numeric, cutoff to manage high or low SNPs sharing between a pair of sample
-#' @param region_cutoff numeric, cutoff for case with low SNP sharing (default:0.75)
-#' @param num_round_digit integer, rounding numeric up to this decimal point (default:3)
+#' @param sample_pairs data frame, pairwise samples information
+#' @param center_cutoff numeric, cutoff to be classified as same subject samples (default: 0.5)
+#' @param source_cutoff numeric, cutoff to be classififed as source sample (default: 0.4)
+#' @param target_cutoff numeric, cutoff to be classified as target sample (default: 0.1)
+#' @param localPcomm_cutoff numeric, cutoff to manage high or low SNPs sharing between a pair of samples
+#' @param region_cutoff numeric, cutoff for case with low SNP sharing (default: 0.75)
+#' @param num_round_digit integer, rounding numeric up to this decimal point (default: 3)
 #' @param output_path character, output directory
 #'
-#' @usage pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,localPcomm_cutoff,region_cutoff,num_round_digit,output_path)
+#' @usage pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,
+#' localPcomm_cutoff,region_cutoff,num_round_digit,output_path)
 #'
-#' @return matrix, 2 columns: pcommon and relation
+#' @return matrix, 2 columns containing pcommon and relation
 #' @references
 #' {TBA}
 #'

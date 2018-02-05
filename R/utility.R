@@ -1,4 +1,5 @@
 #' Check for scalar argument
+#'
 #' This function checks for user's input is a scalar
 #'
 #' @details user's entry must meet the following criteria:

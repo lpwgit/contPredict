@@ -2,8 +2,7 @@
 % Please edit documentation in R/utility.R
 \name{is_scalar_character}
 \alias{is_scalar_character}
-\title{Check for scalar argument
-This function checks for user's input is a scalar}
+\title{Check for scalar argument}
 \usage{
 is_scalar_character(x)
 }
@@ -14,7 +13,6 @@ is_scalar_character(x)
 boolean TRUE or FALSE
 }
 \description{
-Check for scalar argument
 This function checks for user's input is a scalar
 }
 \details{

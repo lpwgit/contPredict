@@ -2,15 +2,15 @@
 #'
 #'This function counts number of SNPs in 7 regions of a given pair of sample
 #'
-#' @param VAFdata data frame, Variant Allele Frequency
+#' @param VAFdata data frame, mutation VAF
 #' @param pid1 character, first sample id
 #' @param pid2 character, second sample id
-#' @param slope1 numeric, first slope that is closer to axis-X (default:0.5)
-#' @param slope2 numeric, second slope that is closer to axis-Y (default:2)
+#' @param slope1 numeric, first slope that is closer to axis-X (default: 0.5)
+#' @param slope2 numeric, second slope that is closer to axis-Y (default: 2)
 #'
 #' @usage pairCountPoint(VAFdata,pid1,pid2,slope1,slope2)
 #'
-#' @return matrix of 7 columns: number of SNPs in 7 regions
+#' @return matrix, containing number of SNPs in 7 regions
 #'
 #' @references
 #' {TBA}
@@ -29,7 +29,5 @@ pairCountPoint <- function(VAFdata,pid1,pid2,slope1,slope2) {
   r7 <- sum(VAFdata[,pid2]<=slope2*VAFdata[,pid1] & VAFdata[,pid2]>=slope1*VAFdata[,pid1] & !(VAFdata[,pid2]<=VAF_ignore & VAFdata[,pid1]<=VAF_ignore)) ## center
   tab <- t(c(r1,r2,r3,r4,r5,r6,r7))
   colnames(tab)=c("x0y0","xylt0d2","xonly","yonly","x2y","y2x","center")
-#print(c(pid1,pid2))
-#  print(tab)
 invisible(tab)
 }

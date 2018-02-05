@@ -1,9 +1,9 @@
-#' Count number of mutation in 7 regions of variant allele frequency (VAF) scatter plot for a pair of sample (s1,s2)
+#' Count number of mutation in 7 regions of VAF scatter plot for a pair of samples (s1,s2)
 #'
-#' This function counts number of SNPs in 7 regions of pairwise sample VAF scatter plot
+#' This function counts number of SNPs in 7 regions of pairwise samples VAF scatter plot
 #'
-#'@param sample_pairs data frame
-#'@param VAFdata data frame, VAF
+#'@param sample_pairs data frame, pairwise samples information
+#'@param VAFdata data frame, mutation VAF
 #'@param SNPcount integer matrix, number of SNPs for each sample
 #'@param SNPshare integer matrix, number of common SNPs
 #'@param VAF_cutoff numeric, minimum VAF (default: 0.002)
@@ -12,7 +12,7 @@
 #'
 #' @usage regionCountMutation(sample_pairs,VAFdata,SNPcount,SNPshare,VAF_cutoff,VAF_ignore,n)
 #'
-#' @return matrix, n SNPs x 10 columns: number of SNPs in 7 regions, number of SNPs in s1, number of SNPs in s2, common SNPs between s1 and s2
+#' @return matrix, (n mutation x 10) containing number of SNPs in 7 regions, number of SNPs in s1, number of SNPs in s2, common SNPs between s1 and s2
 #'
 #' @references
 #' {TBA}

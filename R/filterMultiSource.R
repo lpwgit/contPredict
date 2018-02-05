@@ -4,12 +4,12 @@
 #'
 #' @param filename character, contamination file name
 #' @param output_path character, output directory
-#' @param VAFdata data frame, VAF
-#' @param VAFcov data frame, VAFcov
-#' @param uniq_both integer, flag to control type of overlapping SNPs in source and target samples
+#' @param VAFdata data frame, mutation VAF
+#' @param VAFcov data frame, mutation coverage
+#' @param uniq_both integer, flag to control type of overlapping mutation in source and target samples
 #' @usage filterMultiSources(filename,output_path,VAFdata,VAFcov,uniq_both)
 #'
-#' @return write to output directory
+#' @return write to contPredict.txt at output_path
 #'
 #' @references
 #' {TBA}
@@ -53,9 +53,9 @@ filterMultiSources <- function (filename,output_path,VAFdata,VAFcov,uniq_both=2)
       f1 <- paste0(output_path, "/tmp/",dupl.target[i],"_",current[1,"source"],"_",current[2,"source"],"_present_absent_info.txt")
       f2 <- paste0(output_path, "/tmp/",dupl.target[i],"_",current[2,"source"],"_",current[1,"source"],"_present_absent_info.txt")
       if(file.exists(f1)){
-        indata <- as.data.frame(read.table(f1))
+        indata <- as.data.frame(read.table(f1,header=T))
       }else if(file.exists(f2)){
-        indata <- as.data.frame(read.table(f2))
+        indata <- as.data.frame(read.table(f2,header=T))
       }
       consider_3samples <- TRUE
       if(consider_3samples){
@@ -387,7 +387,7 @@ filterMultiSources <- function (filename,output_path,VAFdata,VAFcov,uniq_both=2)
     }
   if(first){
     outfile <- paste0(output_path,"/tmp/log_dist.txt")
-    write.table(multi.source,quote=F,outfile,append=T,row.names=F)
+    write.table(multi.source,quote=F,outfile,append=F,row.names=F)
     first = FALSE
   }else{
     write.table(multi.source,quote=F,outfile,append=T,row.names=F)  }
