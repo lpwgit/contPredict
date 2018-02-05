@@ -123,13 +123,6 @@ rel <- pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,local
 
 sample_pairs <- cbind(sample_pairs, rel)
 
-# plot pairwise shared num mutation, pcomm, numSNP per sample
-plotfigure <- F
-if(plotfigure){
-  plot_pairSample_shareSNP(SNPshare,SNPcount,n_sample,paste0(output_path,"/tmp/"))
-  plot_pairSample_pcomm(pcomm,SNPshare,SNPcount,n_sample,paste0(output_path,"/tmp/"))
-  plot_perSample_mutationCount (SNPcount,n_sample,paste0(output_path,"/tmp/"))
-}
 if(ownLog==T){
   write.table(sample_pairs,quote=F,sep='\t',paste0(output_path,"/tmp/sample_pairs_info.txt"))
 }
@@ -188,16 +181,6 @@ if(continue.analysis){
 	  circos.plot<- data.frame(rbind(same.subject.out,contaminate))
 	}else{
 	  circos.plot<- contaminate
-	}
-	final.circos <- circos.plot
-	outfile <- paste0(output_path,"/tmp/circos_plotdata.txt")
-	write.table(final.circos,outfile,quote=F,sep='\t',row.names = F)
-
-	plot_circos =TRUE
-	if(plot_circos){
-	  file <- paste0(output_path,"/tmp/circos_plotdata.txt")
-	  plot_circos_link (file,R=300,W=30,plotsize=800,titleStr="Contamination",seg.lab.size = 1.3,fig.file="contamination_circos.pdf",contaminatedOnly=TRUE,sameSubjectOnly=FALSE,allSamples=sampleID, output_path )
-	  plot_circos_link (outfile,R=300,W=30,plotsize=800,titleStr="Same subjects",seg.lab.size = 1.3,fig.file="sameSubjects_circos.pdf",contaminatedOnly=FALSE,sameSubjectOnly=TRUE,allSamples=sampleID, output_path )
 	}
 } ## contamination exists
 
