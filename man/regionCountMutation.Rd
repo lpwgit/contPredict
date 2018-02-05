@@ -2,15 +2,9 @@
 % Please edit documentation in R/regionCountMutation.R
 \name{regionCountMutation}
 \alias{regionCountMutation}
-<<<<<<< HEAD
 \title{Count number of mutation in 7 regions of variant allele frequency (VAF) scatter plot for a pair of sample (s1,s2)}
 \usage{
 regionCountMutation(sample_pairs,VAFdata,SNPcount,SNPshare,VAF_cutoff,VAF_ignore,n)
-=======
-\title{Count number of mutation in 7 regions of variant allele frequency (VAF) scatter plot of a pair of sample (s1,s2)}
-\usage{
-regionCountMutation(VAFdata,SNPcount,SNPshare,VAF_cutoff,VAF_ignore,n)
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \arguments{
 \item{sample_pairs}{data frame}

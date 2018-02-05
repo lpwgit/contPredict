@@ -2,11 +2,7 @@
 % Please edit documentation in R/pairRelation.R
 \name{pairRelation}
 \alias{pairRelation}
-<<<<<<< HEAD
 \title{Determine relationship between pairwise sample}
-=======
-\title{Determine potential contamination relationship between paired sample}
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 \usage{
 pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,localPcomm_cutoff,region_cutoff,num_round_digit,output_path)
 }
@@ -24,11 +20,8 @@ pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,localPcomm_c
 \item{region_cutoff}{numeric, cutoff for case with low SNP sharing (default:0.75)}
 
 \item{num_round_digit}{integer, rounding numeric up to this decimal point (default:3)}
-<<<<<<< HEAD
 
 \item{output_path}{character, output directory}
-=======
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \value{
 matrix, 2 columns: pcommon and relation

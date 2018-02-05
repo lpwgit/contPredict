@@ -9,13 +9,8 @@ Depends:
   grid,
   gridExtra,
   plyr,
-<<<<<<< HEAD
   reshape2
-=======
-  reshape2,
-  RGraphics
 Suggests: knitr,VignetteBuilder,rmarkdown
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 Description: Predict sample containmination level variant allele frequency
 License: Roswell Park Cancer Institute
 Encoding: UTF-8

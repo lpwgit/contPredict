@@ -2,7 +2,6 @@
 % Please edit documentation in R/setParameterConfig.R
 \name{setParameterConfig}
 \alias{setParameterConfig}
-<<<<<<< HEAD
 \title{Set parameters base on configuration file}
 \usage{
 setParameterConfig(configFile)
@@ -12,17 +11,6 @@ setParameterConfig(configFile)
 }
 \description{
 This function takes in data from configuration file to set parameters
-=======
-\title{Set parameter with information from configuration file}
-\usage{
-setParameterConfig(filename)
-}
-\arguments{
-\item{filename}{character, configuration file name and its path}
-}
-\description{
-This function reads in configuration file to set parameters
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \references{
 {TBA}

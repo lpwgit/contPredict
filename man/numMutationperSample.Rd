@@ -14,11 +14,7 @@ numMutationperSample (VAFdata,VAF_cutoff,n)
 \item{n}{numeric, number of sample}
 }
 \value{
-<<<<<<< HEAD
 list, SNP count per sample
-=======
-list, mixing ratio
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \description{
 This function counts number of SNPs in each sample
