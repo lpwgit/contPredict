@@ -6,11 +6,7 @@
 \usage{
 pairPCommon(VAFdata,VAF_cutoff,num_round_digit,n_sample)
 pairShare(VAFdata,VAF_cutoff,n_sample)
-<<<<<<< HEAD
 pairList(VAFdata,n_sample,del)
-=======
-pairList(VAFdata,n_sample)
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 pairCommList(SNPcomm,n_sample)
 }
 \arguments{
@@ -23,11 +19,8 @@ pairCommList(SNPcomm,n_sample)
 \item{n_sample}{numeric, number of sample}
 
 \item{SNPcomm}{matrix, output from the calling of pairPCommon(VAFdata,VAF_cutoff,num_round_digit,n_sample)}
-<<<<<<< HEAD
 
 \item{del}{character, file delimiter}
-=======
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \value{
 pairPCommon: matrix, nxn pcommon of pairwise sample, n: number of sample

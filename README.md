@@ -13,7 +13,7 @@ devtools::install_github("lpwgit/sampleContamination")
 library(sampleCont)  
 data_path <-  system.file('extdata',package='sampleContamination')  
 output_path <- 'output_express'  
-config_file <- system.file("extdata", 'config.txt', package = "sampleCont", mustWork = TRUE)  
+config_file <- system.file("extdata", 'config.txt', package = "sampleContamination", mustWork = TRUE)  
 run_sampleContamination(data_path = data_path, 
                         output_path = output_path, 
                         config_file = config_file)

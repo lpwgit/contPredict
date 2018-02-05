@@ -4,11 +4,7 @@
 \alias{run_sampleContamination}
 \title{Main function to run sample contamination analysis}
 \usage{
-<<<<<<< HEAD
 run_sampleContamination(data_path, output_path, config_file="config.txt",rmSNPcv_cutoff=0,manualsetPara=FALSE,manual_localPcomm=10,manual_center =50,filterCOV =0)
-=======
-run_sampleContamination(data_path, output_path, config.file="config.txt",rmcov_cutoff=0,manualsetPara=FALSE)
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \arguments{
 \item{data_path}{character, VAF and COV data directory}
@@ -17,30 +13,18 @@ run_sampleContamination(data_path, output_path, config.file="config.txt",rmcov_c
 
 \item{config_file}{character, configuration file}
 
-<<<<<<< HEAD
 \item{rmSNPcv_cutoff}{numeric, TRUE: filter SNPs with low covariance of coefficient (COV), FALSE: (default:FALSE)}
 
-=======
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 \item{manualsetPara}{logical, TRUE: parameter setting base on distribution of pairwise sample commonality, FALSE: default setting as in configuration file (default:FALSE)}
 
 \item{manual_localPcomm}{numeric, localPcomm for classification low/high contamination (default: 10)}
 
 \item{manual_center}{numeric, manual center cutoff for same subject determination (default: 50)}
 
-<<<<<<< HEAD
 \item{filterCOV}{numeric, below this cutoff}
 }
 \value{
 contamination tab delimited text file with 3 columns: source sample, target sample, contamination percentage.Contamination and same subject circos plot figure in pdf
-=======
-\item{rmcov_cutoff}{numeric, exclude SNPs with coefficient of variance (COV) below this cutoff}
-
-\item{rmcov_cutoff}{numeric, TRUE: filter SNPs with low covariance of coefficient (COV), FALSE: (default:FALSE)}
-}
-\value{
-contamination tab delimited text file with 3 columns: source sample, target sample, contamination percentage. A .tif circos plot figure
->>>>>>> 3b82f69fbb478a4e229c61fd993f97a6b55130cd
 }
 \description{
 This function detects sample contamination base on variant allele frequency (VAF) and variant coverage

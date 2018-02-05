@@ -162,27 +162,11 @@ if(continue.analysis){
 	write.table(unique(printmr),quote=F,sep='\t',paste(output_path,"/tmp/",center_cutoff,"center_",source_cutoff,"source_",target_cutoff,"target_",localPcomm_cutoff,"pcomm_",region_cutoff,"region_",n_sample,"sample_contaminationLevel.txt",sep = ''),row.names = F) ## final output
 	result.file = paste(output_path,"/tmp/",center_cutoff,"center_",source_cutoff,"source_",target_cutoff,"target_",localPcomm_cutoff,"pcomm_",region_cutoff,"region_",n_sample,"sample_contaminationLevel.txt",sep = '')
 	final.pred <- as.data.frame(filterMultiSources(result.file,output_path,VAFdata,VAFcov,uniq_both = 2))
-
-	## circos plot
-	same.subject <- sample_pairs[sample_pairs$rel=="00",]
-
-	## attach relation
-  tmp = unique(merge(final.mr, final.pred, by=c('source','target'))[1:4])
-  tmp = tmp[order(tmp$rel,decreasing=T),]
-
-  contaminate <- tmp[!duplicated(tmp[,c('source','target','predicted_contamination_perc.x')]),]
-	colnames(contaminate) <- c('source','target','link','rel')
-	contaminate$link <-as.numeric(contaminate$link)/10 # circos link weightage
-  contaminate[contaminate$rel=='01','rel'] <- '10'
-
-	if(nrow(same.subject)>0){
-	  same.subject.mr <- as.data.frame(mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,ALL_flag = TRUE,sameSubject=TRUE))
-	  same.subject.out <- as.data.frame(cbind(source=same.subject.mr$source,target=same.subject.mr$target,link=round(10* as.numeric(same.subject.mr$lm_coeff),num_round_digit),rel=same.subject.mr$rel))
-	  circos.plot<- data.frame(rbind(same.subject.out,contaminate))
-	}else{
-	  circos.plot<- contaminate
-	}
 } ## contamination exists
+
+## clean up
+tmp=paste0(output_path,"/tmp")
+unlink(tmp, TRUE)
 
 process.msg <-"Done!\nOutput written to:"
 cat(process.msg, output_path,"\n")
