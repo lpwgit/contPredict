@@ -10,6 +10,4 @@ Maintainer: The package maintainer <laiping.wong@roswellpark.org>
 License: Roswell Park Cancer Institute
 LazyData: true
 RoxygenNote: 6.0.1
-Suggests: knitr,
-    rmarkdown
 VignetteBuilder: knitr
