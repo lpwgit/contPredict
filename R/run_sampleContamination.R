@@ -178,6 +178,3 @@ process.msg <-"Done!\nOutput written to:"
 cat(process.msg, output_path,"\n")
 rtn.out
 } ## end function
-
-## rmarkdown
-rmarkdown::render("/home/lbw/prj1/2018Jan31/sampleContamination/vignettes/sampleContamination.Rmd",output_format = "pdf_document", output_dir = "/home/lbw/prj1/2018Jan31/sampleContamination/inst/extdata")
