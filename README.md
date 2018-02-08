@@ -1,10 +1,10 @@
 # R package for Sample Contamination Prediction
 
 ## Purpose
-Identify sample contamination base on variant allele frequency (VAF) detected from genome sequencing on tumor samples. An example of VAF data and its configuration file are distributed with this package under inst/extdata/.
+Identify sample contamination base on variant allele frequency (VAF) detected from genome sequencing on tumor samples. An example of VAF data and its configuration file are distributed with this package under inst/extdata/. Refer method documentation [here](/inst/extdata/sampleContamination.pdf)
 
 ## Manual
-[Refer manual here](/inst/extdata/sampleContamination_vignettes.pdf)
+Refer manual [here](/inst/extdata/sampleContamination_manual.pdf)
 
 ## Installation
 devtools::install_github("lpwgit/sampleContamination")
