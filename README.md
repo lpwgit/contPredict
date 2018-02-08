@@ -10,7 +10,7 @@ Refer manual [here](/inst/extdata/sampleContamination_manual.pdf)
 devtools::install_github("lpwgit/sampleContamination")
 
 ## Example usage
-library(sampleCont)  
+library(sampleContamination)  
 data_path <-  system.file('extdata',package='sampleContamination')  
 output_path <- 'output_express'  
 config_file <- system.file("extdata", 'config.txt', package = "sampleContamination", mustWork = TRUE)  
