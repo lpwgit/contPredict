@@ -9,7 +9,7 @@
 #' @param uniq_both integer, flag to control type of overlapping mutation in source and target samples
 #' @usage filterMultiSources(filename,output_path,VAFdata,VAFcov,uniq_both)
 #'
-#' @return write to contPredict.txt at output_path
+#' @return write contPredict.txt to output_path
 #'
 #' @references
 #' {TBA}

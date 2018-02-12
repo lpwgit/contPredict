@@ -1,5 +1,5 @@
-Package: sampleContamination
-Title: Sample Contamination R Package
+Package: contPredict
+Title: contPredict R Package
 Version: 0.1.0
 Description: Sample contamination discovery using variant allele frequency (VAF)
 Encoding: UTF-8

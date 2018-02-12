@@ -4,7 +4,8 @@
 \alias{multipleSource}
 \title{Identify true source from multisource contamination}
 \usage{
-multipleSource(sample_pairs,VAFdata,VAFcov,VAF_cutoff,VAF_cutoff1,p.val_cutoff,output_path)
+multipleSource(sample_pairs,VAFdata,VAFcov,VAF_cutoff,
+VAF_cutoff1,p.val_cutoff,output_path)
 }
 \arguments{
 \item{sample_pairs}{data frame, sample infomation}

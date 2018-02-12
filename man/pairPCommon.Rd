@@ -2,7 +2,7 @@
 % Please edit documentation in R/pairCommon.R
 \name{pairPCommon}
 \alias{pairPCommon}
-\title{Pairwise Sample Function}
+\title{Pairwise sample function}
 \usage{
 pairPCommon(VAFdata,VAF_cutoff,num_round_digit,n)
 pairShare(VAFdata,VAF_cutoff,n)

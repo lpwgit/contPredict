@@ -30,7 +30,7 @@ if(!file.exists(config_file) ){
 
 options(stringsAsFactors = FALSE)
 options(warn=-1)
-suppressPackageStartupMessages(library("sampleContamination"))
+suppressPackageStartupMessages(library("contPredict"))
 
 # set parameters
 setParameterConfig(config_file)
@@ -79,6 +79,7 @@ cat(process.msg,"\n")
 
 ## count common SNPs
 SNPshare<- pairShare(VAFdata,VAF_cutoff,n_sample)
+#cat("count common SNPs ", format(Sys.time(), "%a %b %d %X %Y"), "\n")
 
 ## create all possible pairwise sample
 delimeter <- ":"
@@ -95,6 +96,7 @@ sample_pairs <- data.frame(pairID = pairs, pids)
 ## count mutation in 7 regions
 countPoint <- regionCountMutation(sample_pairs,VAFdata,SNPcount,SNPshare,VAF_cutoff,VAF_ignore,n_sample)
 sample_pairs <- cbind(sample_pairs, countPoint)
+#cat("count mutation in 7 regions ", format(Sys.time(), "%a %b %d %X %Y"), "\n")
 
 ## manual set parameters (localPcomm_cutoff,center_cutoff, target_cutoff, source_cutoff, region_cutoff) ignore those in configuration file
 if(manualsetPara){
@@ -121,8 +123,8 @@ if(manualsetPara){
 
 ## identify relation
 rel <- pairRelation(sample_pairs,center_cutoff,source_cutoff,target_cutoff,localPcomm_cutoff,region_cutoff,num_round_digit,output_path)
-
 sample_pairs <- cbind(sample_pairs, rel)
+#cat("identify relation ", format(Sys.time(), "%a %b %d %X %Y"), "\n")
 
 if(ownLog==T){
   write.table(sample_pairs,quote=F,sep='\t',paste0(output_path,"/tmp/sample_pairs_info.txt"))
@@ -144,8 +146,10 @@ if(length(which(rel[,'rel'] !="00" & rel[,'rel'] !="-1")) ==0){
 
 if(continue.analysis){
 	## check multi-sources contamination
+  cat("start check multi-sources contamination ", format(Sys.time(), "%a %b %d %X %Y"), "\n")
 	final_rel <- multipleSource(sample_pairs,VAFdata ,VAFcov,VAF_cutoff,VAF_cutoff1,p.val_cutoff,output_path)
 	write.table(as.matrix(final_rel),quote=F,sep='\t',paste(output_path,"/tmp/",n_sample,"sample_pairs_finalRel_multiSource.txt",sep = ''),row.names = F) #log
+
 
 	## calculate mixing ratio
 	process.msg <- "Calculating contamination level..."
@@ -156,18 +160,51 @@ if(continue.analysis){
 	final.mr <- data.frame(cbind(mr[,'source'],mr[,'target'],as.numeric(mr[,'lm_coeff'])*100,mr[,'rel'],mr[,'flip']))
   colnames(final.mr) <- c('source','target','predicted_contamination_perc','rel','flip')
 
-  ## write contamination output
+  # write contamination output
   printmr <- data.frame(cbind(source=final.mr$source,target=final.mr$target,predicted_contamination_perc=final.mr$predicted_contamination_perc))
 	write.table(unique(printmr),quote=F,sep='\t',paste(output_path,"/tmp/",center_cutoff,"center_",source_cutoff,"source_",target_cutoff,"target_",localPcomm_cutoff,"pcomm_",region_cutoff,"region_",n_sample,"sample_contaminationLevel.txt",sep = ''),row.names = F) ## final output
 	result.file = paste(output_path,"/tmp/",center_cutoff,"center_",source_cutoff,"source_",target_cutoff,"target_",localPcomm_cutoff,"pcomm_",region_cutoff,"region_",n_sample,"sample_contaminationLevel.txt",sep = '')
 	final.pred <- as.data.frame(filterMultiSources(result.file,output_path,VAFdata,VAFcov,uniq_both = 2))
 
-	## write same individual pairs
+	# write same individual pairs
 	usedCol <-c(2,3)
   same.ind <- as.data.frame(sample_pairs[which(sample_pairs$rel=="00"),usedCol])
   outF <-paste0(output_path,"/sameIndividual.txt")
   colnames(same.ind) <-c("pid1","pid2")
   write.table(same.ind,quote=F, sep='\t',col.names = T, row.names = F,outF)
+
+  # circos plot
+  same.subject <- sample_pairs[sample_pairs$rel=="00",]
+
+  # attach relation
+  tmp = unique(merge(final.mr, final.pred, by=c('source','target'))[1:4])
+  tmp = tmp[order(tmp$rel,decreasing=T),]
+
+  contaminate <- tmp[!duplicated(tmp[,c('source','target','predicted_contamination_perc.x')]),]
+  colnames(contaminate) <- c('source','target','link','rel')
+  contaminate$link <-as.numeric(contaminate$link)/10 # circos link weight
+  contaminate[contaminate$rel=='01','rel'] <- '10'
+
+  if(nrow(same.subject)>0){
+    same.subject.mr <- as.data.frame(mixingRatio(VAFdata,VAFcov,sample_pairs,final_rel,VAF_cutoff,VAF_ignore,ALL_flag = TRUE,sameSubject=TRUE))
+    same.subject.out <- as.data.frame(cbind(source=same.subject.mr$source,target=same.subject.mr$target,link=round(10* as.numeric(same.subject.mr$lm_coeff),num_round_digit),rel=same.subject.mr$rel))
+    circos.plot<- data.frame(rbind(same.subject.out,contaminate))
+  }else{
+    circos.plot<- contaminate
+  }
+  final.circos <- circos.plot
+  file <- paste0(output_path,"/tmp/circos_plotdata.txt")
+  write.table(final.circos,file,quote=F,sep='\t',row.names = F)
+print(final.circos)
+  plot_circos =TRUE
+  if(plot_circos){
+    file <- paste0(output_path,"/tmp/circos_plotdata.txt")
+    plot_circos_link (file,R=200,W=30,plotsize=800,titleStr="Contamination",seg.lab.size = 1.2,fig.file="contamination_circos.png",contaminatedOnly=TRUE,sameSubjectOnly=FALSE,allSamples=sampleID, output_path )
+    plot_circos_link (file,R=200,W=30,plotsize=800,titleStr="Same individual",seg.lab.size = 1.2,fig.file="sameIndividual_circos.png",contaminatedOnly=FALSE,sameSubjectOnly=TRUE,allSamples=sampleID, output_path )
+
+    # same individual + contamination in 1 circos
+    plot_circos_link (file,R=200,W=30,plotsize=800,titleStr="All",seg.lab.size = 1.2,fig.file="allPairs_circos.png",contaminatedOnly=FALSE,sameSubjectOnly=FALSE,allSamples=sampleID, output_path )
+  }
 } ## contamination exists
 
 ## clean up

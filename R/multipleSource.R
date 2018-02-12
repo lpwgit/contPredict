@@ -10,7 +10,8 @@
 #' @param p.val_cutoff numeric, pval cutoff to be considered a significant contamination source (default: 0.05)
 #' @param output_path character, output directory
 #'
-#' @usage multipleSource(sample_pairs,VAFdata,VAFcov,VAF_cutoff,VAF_cutoff1,p.val_cutoff,output_path)
+#' @usage multipleSource(sample_pairs,VAFdata,VAFcov,VAF_cutoff,
+#' VAF_cutoff1,p.val_cutoff,output_path)
 #'
 #' @return list, remaining paiwise sample relationship information after Fisher exact test that eliminates insignificant contamination pair
 #'
@@ -110,6 +111,7 @@ multipleSource <- function(sample_pairs,VAFdata,VAFcov,VAF_cutoff=0.002,VAF_cuto
       num.source = length(source)
 
       source_pair <- combn(source, 2) ## regardless of patient
+
       sourcepair_chk_fishtest <- apply(source_pair, 2, function(k) {
           s1 <- k[1]
           s2 <- k[2]
@@ -120,29 +122,32 @@ multipleSource <- function(sample_pairs,VAFdata,VAFcov,VAF_cutoff=0.002,VAF_cuto
             cols = c(1,2,3)
             tmp.data[,cols] = apply(tmp.data[,cols], 2, function(x) as.numeric(as.character(x)))
 
-            category <- apply(tmp.data,1,function(i){
-              class(i[s1]) <- "numeric"
-              class(i[s2]) <- "numeric"
-              class(i[target]) <- "numeric"
+            runFast=T
+            if(runFast){
+              category <- apply(tmp.data,1,function(i){
+                class(i[s1]) <- "numeric"
+                class(i[s2]) <- "numeric"
+                class(i[target]) <- "numeric"
 
-              if(i[s1]>VAF_cutoff&i[s2]>VAF_cutoff&i[target]>VAF_cutoff&i[target]<i[s1]&i[target]<i[s2] ){ # 2017 Apr24
-                # both present
-                out <- c(unlist(i['publicDB']),"present","both")
-              }else if(i[s1]>VAF_cutoff1&i[s2]<=VAF_cutoff&i[target]<i[s1]&i[target]>VAF_cutoff){
-                out <- c(unlist(i['publicDB']),"present",s1)
-              }else if(i[s2]>VAF_cutoff1&i[s1]<=VAF_cutoff&i[target]<i[s2]&i[target]>VAF_cutoff){
-                out <- c(unlist(i['publicDB']),"present",s2)
-              }else if(((i[s1]>VAF_cutoff1&i[s2]>VAF_cutoff) | (i[s1]>VAF_cutoff&i[s2]>VAF_cutoff1)) & !i[target]>VAF_cutoff ){
-                out <- c(unlist(i['publicDB']),"absent","both")
-              }else if((i[s2]>VAF_cutoff1&i[s1]<=VAF_cutoff) & !i[target]>VAF_cutoff ){
-                out <- c(unlist(i['publicDB']),"absent",s2) # 2017Mar31
-              }else if((i[s1]>VAF_cutoff1&as.numeric(i[s2])<=VAF_cutoff) & !i[target]>VAF_cutoff ){
-                out <- c(unlist(i['publicDB']),"absent",s1) # 2017Mar31
-              } else{
-                out <- c(unlist(i['publicDB']),"dummy","dummy")
-              }
-              out
-            })
+                if(i[s1]>VAF_cutoff&i[s2]>VAF_cutoff&i[target]>VAF_cutoff&i[target]<i[s1]&i[target]<i[s2] ){ # 2017 Apr24
+                  # both present
+                  out <- c(unlist(i['publicDB']),"present","both")
+                }else if(i[s1]>VAF_cutoff1&i[s2]<=VAF_cutoff&i[target]<i[s1]&i[target]>VAF_cutoff){
+                  out <- c(unlist(i['publicDB']),"present",s1)
+                }else if(i[s2]>VAF_cutoff1&i[s1]<=VAF_cutoff&i[target]<i[s2]&i[target]>VAF_cutoff){
+                  out <- c(unlist(i['publicDB']),"present",s2)
+                }else if(((i[s1]>VAF_cutoff1&i[s2]>VAF_cutoff) | (i[s1]>VAF_cutoff&i[s2]>VAF_cutoff1)) & !i[target]>VAF_cutoff ){
+                  out <- c(unlist(i['publicDB']),"absent","both")
+                }else if((i[s2]>VAF_cutoff1&i[s1]<=VAF_cutoff) & !i[target]>VAF_cutoff ){
+                  out <- c(unlist(i['publicDB']),"absent",s2) # 2017Mar31
+                }else if((i[s1]>VAF_cutoff1&as.numeric(i[s2])<=VAF_cutoff) & !i[target]>VAF_cutoff ){
+                  out <- c(unlist(i['publicDB']),"absent",s1) # 2017Mar31
+                } else{
+                  out <- c(unlist(i['publicDB']),"dummy","dummy")
+                }
+                out
+              })
+            }
 
             category <- t(category)
             colnames(category) <- c("publicDB","set","sampleID")
@@ -193,6 +198,7 @@ multipleSource <- function(sample_pairs,VAFdata,VAFcov,VAF_cutoff=0.002,VAF_cuto
           }
           write.table(prtout,file=outfile,append=TRUE,sep="\t",col.names = F,row.names = F,quote=F)
         }
+        #cat(j, " multi source ", format(Sys.time(), "%a %b %d %X %Y"), "\n")
     } #for(i in 1:length(target_duplct)) {
   } #if(length(target_duplct)>0){
 

@@ -18,7 +18,7 @@ filterMultiSources(filename,output_path,VAFdata,VAFcov,uniq_both)
 \item{uniq_both}{integer, flag to control type of overlapping mutation in source and target samples}
 }
 \value{
-write to contPredict.txt at output_path
+write contPredict.txt to output_path
 }
 \description{
 This function filter multisource contamination

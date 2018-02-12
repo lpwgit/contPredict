@@ -1,4 +1,4 @@
-#' Pairwise Sample Function
+#' Pairwise sample function
 #'
 #' @description
 #' 4 different functions for pairwise sample
